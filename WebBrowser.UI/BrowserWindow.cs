@@ -26,5 +26,27 @@ namespace WebBrowser.UI
         {
             MessageBox.Show("Created by Laurel Walker Davis.\nAuburn University Student\nllw0008@auburn.edu");
         }
+
+        private void addressBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void goButton_Click(object sender, EventArgs e)
+        {
+            string URL = addressBox.Text;
+            tabPage1.Text = URL;
+            webBrowser1.Navigate(URL);
+        }
+
+        private void addressBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                string URL = addressBox.Text;
+                tabPage1.Text = URL;
+                webBrowser1.Navigate(URL);
+            }
+        }
     }
 }
