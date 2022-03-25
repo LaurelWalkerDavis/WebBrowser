@@ -16,5 +16,15 @@ namespace WebBrowser.UI
         {
             InitializeComponent();
         }
+
+        private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Created by Laurel Walker Davis.\nAuburn University Student\nllw0008@auburn.edu");
+        }
     }
 }
