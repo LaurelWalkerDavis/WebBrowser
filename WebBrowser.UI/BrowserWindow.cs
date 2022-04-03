@@ -15,6 +15,7 @@ namespace WebBrowser.UI
         public BrowserWindow()
         {
             InitializeComponent();
+            browserBar1.Dock = DockStyle.Fill;
         }
 
         private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -27,26 +28,20 @@ namespace WebBrowser.UI
             MessageBox.Show("Created by Laurel Walker Davis.\nAuburn University Student\nllw0008@auburn.edu");
         }
 
-        private void addressBox_Click(object sender, EventArgs e)
+        private void newTabToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BrowserBar newBrwBar = new BrowserBar();
+            newBrwBar.Dock = DockStyle.Fill;
 
+            TabPage newTab = new TabPage("Tab " + (tabControl1.TabPages.Count + 1));
+            newTab.Controls.Add(newBrwBar);            
+            tabControl1.TabPages.Add(newTab);
+            tabControl1.SelectedTab = newTab;
         }
 
-        private void goButton_Click(object sender, EventArgs e)
+        private void closeCurrentTabMenuItem_Click(object sender, EventArgs e)
         {
-            string URL = addressBox.Text;
-            tabPage1.Text = URL;
-            webBrowser1.Navigate(URL);
-        }
-
-        private void addressBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                string URL = addressBox.Text;
-                tabPage1.Text = URL;
-                webBrowser1.Navigate(URL);
-            }
+            tabControl1.TabPages.Remove(tabControl1.SelectedTab);
         }
     }
 }
