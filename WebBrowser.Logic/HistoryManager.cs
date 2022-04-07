@@ -11,7 +11,25 @@ namespace WebBrowser.Logic
     {
         public static void AddHistoryItem(HistoryItem item)
         {
+            var adapter = new HistoryTableAdapter();
+            adapter.Insert(item.URL, item.Title, item.Date);
+        }
 
-        }            
+        public static List<HistoryItem> GetHistoryItems()
+        {
+            var adapter = new HistoryTableAdapter();
+            var results = new List<HistoryItem>();
+            var rows = adapter.GetData();
+            foreach(var row in rows)
+            {
+                var item = new HistoryItem();
+                item.URL = row.URL;
+                item.Title = row.Title;
+                item.Date = row.Date;
+
+                results.Add(item);
+            }
+            return results;
+        }
     }
 }
