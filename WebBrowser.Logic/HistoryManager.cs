@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebBrowser.Logic;
-using WebBrowser.Data;
+using WebBrowser.Data.HistoryDataSetTableAdapters;
 
 namespace WebBrowser.Logic
 {
@@ -12,6 +11,7 @@ namespace WebBrowser.Logic
     {
         public static void AddHistoryItem(HistoryItem item)
         {
+
         }            
     }
 }
