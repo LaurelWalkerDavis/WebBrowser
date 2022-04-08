@@ -21,7 +21,6 @@ namespace WebBrowser.UI
         private void BookmarkManagerForm_Load(object sender, EventArgs e)
         {
             var items = BookmarksManager.GetBookmarksItems();
-            listBoxBookmark.Items.Clear();
 
             foreach (var item in items)
             {

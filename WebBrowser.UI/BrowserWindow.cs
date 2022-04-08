@@ -49,5 +49,11 @@ namespace WebBrowser.UI
         {
             var historyForm = new HistoryManagerForm();
         }
+
+        private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BookmarkManagerForm bookmarkForm = new BookmarkManagerForm();
+            bookmarkForm.ShowDialog();
+        }
     }
 }

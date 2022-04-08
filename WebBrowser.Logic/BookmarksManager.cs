@@ -12,7 +12,18 @@ namespace WebBrowser.Logic
         public static void AddBookmarksItem(BookmarkItem item)
         {
             var adapter = new BookmarksTableAdapter();
-            adapter.Insert(item.URL, item.Title);
+            Boolean duplicate = false;
+            foreach (var entry in adapter.GetData())
+            {
+                if(entry.URL == item.URL)
+                {
+                    duplicate = true;
+                }
+            }
+            if(!duplicate)
+            {
+                adapter.Insert(item.URL, item.Title);
+            }            
         }
 
         public static List<BookmarkItem> GetBookmarksItems()

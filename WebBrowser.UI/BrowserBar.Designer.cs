@@ -119,6 +119,7 @@
             this.bookmkButton.Name = "bookmkButton";
             this.bookmkButton.Size = new System.Drawing.Size(23, 22);
             this.bookmkButton.Text = "toolStripButton2";
+            this.bookmkButton.Click += new System.EventHandler(this.bookmkButton_Click);
             // 
             // webBrowser1
             // 
