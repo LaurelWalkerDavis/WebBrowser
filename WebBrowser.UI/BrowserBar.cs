@@ -16,27 +16,11 @@ namespace WebBrowser.UI
 {
     public partial class BrowserBar : UserControl
     {
+
         public BrowserBar()
         {
             InitializeComponent();
         }
-
-        //public static bool goodURL(string testURL)
-        //{
-        //    if (Uri.IsWellFormedUriString(p_strValue, UriKind.RelativeOrAbsolute))
-        //    {
-        //        Uri l_strUri = new Uri(p_strValue);
-        //        return (l_strUri.Scheme == Uri.UriSchemeHttp || l_strUri.Scheme == Uri.UriSchemeHttps);
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //    return (!string.IsNullOrEmpty(testURL)) && (Uri.IsWellFormedUriString(testURL, UriKind.Absolute));
-
-        //}
-
-        public static bool CheckURLValid(string source) => Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && uriResult.Scheme == Uri.UriSchemeHttps;
 
         private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -55,21 +39,36 @@ namespace WebBrowser.UI
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            string URL = addressBox.Text;
-            //tabPage1.Text = URL;
-            webBrowser1.Navigate(URL);
+            string url = addressBox.Text;
+            DateTime date = DateTime.Now;
+
+            webBrowser1.Navigate(url);
+        }
+
+        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            string url = webBrowser1.Url.ToString();                        
+            //TitleScraper tobject = new TitleScraper(url);
+            //tobject.Scrape();
+            //string title = tobject.Title;
+
+            DateTime date = DateTime.Now;
+            string title = webBrowser1.DocumentTitle;
+
+            addHistory(url, title, date);
         }
 
         private void addressBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string URL = addressBox.Text;
-                //tabPage1.Text = URL;
-                webBrowser1.Navigate(URL);      
+                string url = addressBox.Text;
+                DateTime date = DateTime.Now;
+
+                webBrowser1.Navigate(addressBox.Text);
             }
         }
-
+        
         private void refreshButton_Click(object sender, EventArgs e)
         {
             webBrowser1.Refresh();
@@ -89,9 +88,7 @@ namespace WebBrowser.UI
 
         private void bookmkButton_Click(object sender, EventArgs e)
         {
-            
             string inputURL = webBrowser1.Url.AbsoluteUri.ToString();
-
             TitleScraper titleScrape = new TitleScraper(inputURL);
             titleScrape.Scrape();
             string title = titleScrape.Title.ToString();
@@ -102,6 +99,25 @@ namespace WebBrowser.UI
 
             BookmarksManager.AddBookmarksItem(bookmark);
         }
+
+        private void addHistory(string url, string title, DateTime date)
+        {
+            HistoryItem history = new HistoryItem();
+            history.URL = url;
+            history.Title = title;
+            history.Date = date;
+
+            HistoryManager.AddHistoryItem(history);
+        }
+
+        //private string pageTitle(string URL)
+        //{
+        //    TitleScraper titleScrape = new TitleScraper(URL);
+        //    titleScrape.Scrape();
+        //    string title = titleScrape.Title.ToString();
+
+        //    return title;
+        //}
     }
 
     public class TitleScraper
