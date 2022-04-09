@@ -17,6 +17,8 @@ namespace WebBrowser.UI
     public partial class BrowserBar : UserControl
     {
 
+        private string previousUrl;
+
         public BrowserBar()
         {
             InitializeComponent();
@@ -47,15 +49,28 @@ namespace WebBrowser.UI
 
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            string url = webBrowser1.Url.ToString();                        
+            string url = webBrowser1.Url.ToString();
+
+            if (previousUrl != url)
+            {
+                DateTime date = DateTime.Now;
+                string inputURL = webBrowser1.Url.AbsoluteUri.ToString();
+                TitleScraper titleScrape = new TitleScraper(inputURL);
+                titleScrape.Scrape();
+                string title = titleScrape.Title.ToString();
+                //string title = webBrowser1.DocumentTitle;
+                addHistory(url, title, date);
+
+                previousUrl = url;
+                addressBox.Text = webBrowser1.Url.ToString();
+            }
+            
+            
             //TitleScraper tobject = new TitleScraper(url);
             //tobject.Scrape();
             //string title = tobject.Title;
 
-            DateTime date = DateTime.Now;
-            string title = webBrowser1.DocumentTitle;
-
-            addHistory(url, title, date);
+            
         }
 
         private void addressBox_KeyUp(object sender, KeyEventArgs e)
@@ -76,14 +91,12 @@ namespace WebBrowser.UI
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoBack();
-            addressBox.Text = webBrowser1.Url.ToString();
+            webBrowser1.GoBack();            
         }
 
         private void forwardButton_Click(object sender, EventArgs e)
         {
             webBrowser1.GoForward();
-            addressBox.Text = webBrowser1.Url.ToString();
         }
 
         private void bookmkButton_Click(object sender, EventArgs e)
@@ -104,7 +117,16 @@ namespace WebBrowser.UI
         {
             HistoryItem history = new HistoryItem();
             history.URL = url;
-            history.Title = title;
+                                  
+            if(string.IsNullOrWhiteSpace(title))
+            {
+                history.Title = "Untitled";
+            }
+            else
+            {
+                history.Title = title;
+            }
+
             history.Date = date;
 
             HistoryManager.AddHistoryItem(history);
