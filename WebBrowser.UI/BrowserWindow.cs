@@ -56,5 +56,10 @@ namespace WebBrowser.UI
             BookmarkManagerForm bookmarkForm = new BookmarkManagerForm();
             bookmarkForm.ShowDialog();
         }
+
+        private void clearHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoryManager.DeleteAllHistoryItems();
+        }
     }
 }
