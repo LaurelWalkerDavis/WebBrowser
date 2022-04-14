@@ -52,12 +52,8 @@ namespace WebBrowser.UI
 
         private void clearHistoryButton_Click(object sender, EventArgs e)
         {
-            var items = HistoryManager.GetHistoryItems();
-            listBoxHistory.DataSource = items;
-            foreach(var item in items)
-            {
-                
-            }
+            HistoryManager.DeleteAllHistoryItems();
+            load_data();
         }
     }
 }
