@@ -41,5 +41,29 @@ namespace WebBrowser.Logic
             }
             return results;
         }
+
+        public static List<BookmarkItem> GetBookmarkSearchItems(string keyword)
+        {
+            var adapter = new BookmarksTableAdapter();
+            var results = new List<BookmarkItem>();
+            var rows = adapter.GetDataBySearch(keyword);
+            foreach (var row in rows)
+            {
+                var item = new BookmarkItem();
+                item.URL = row.URL;
+                item.Title = row.Title;
+                item.Id = row.Id;
+
+                results.Add(item);
+            }
+            return results;
+        }
+
+        public static int DeleteBookmarkEntryItem(int Id)
+        {
+            var adapter = new BookmarksTableAdapter();
+            int rows = adapter.DeleteBookmarkSelection(Id);
+            return rows;
+        }
     }
 }

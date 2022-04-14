@@ -20,12 +20,33 @@ namespace WebBrowser.UI
 
         private void BookmarkManagerForm_Load(object sender, EventArgs e)
         {
-            var items = BookmarksManager.GetBookmarksItems();
+            load_data();
+        }
 
-            foreach (var item in items)
-            {
-                listBoxBookmark.Items.Add(string.Format("{0} ({1})", item.Title, item.URL));
-            }
+        private void bookmarkSearchButton_Click(object sender, EventArgs e)
+        {
+            string toFind = bookmarkSearchTextBox.Text;
+            var items = BookmarksManager.GetBookmarkSearchItems(toFind);
+            listBoxBookmark.DataSource = items;
+        }
+
+        private void listBoxBookmark_Format(object sender, ListControlConvertEventArgs e)
+        {
+            BookmarkItem bookmarkItem = (BookmarkItem)e.ListItem;
+            e.Value = string.Format("{0} ({1})", bookmarkItem.Title, bookmarkItem.URL);
+        }
+
+        private void deleteBookmarkButton_Click(object sender, EventArgs e)
+        {
+            BookmarkItem item = (BookmarkItem)listBoxBookmark.SelectedItem;
+            BookmarksManager.DeleteBookmarkEntryItem(item.Id);
+            load_data();
+        }
+
+        private void load_data()
+        {
+            var items = BookmarksManager.GetBookmarksItems();
+            listBoxBookmark.DataSource = items;
         }
     }
 }

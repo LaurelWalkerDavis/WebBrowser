@@ -142,11 +142,11 @@ namespace WebBrowser.UI
             string url = webBrowser1.Url.ToString();
 
             DateTime date = DateTime.Now;
-            string inputURL = webBrowser1.Url.AbsoluteUri.ToString();
-            TitleScraper titleScrape = new TitleScraper(inputURL);
-            titleScrape.Scrape();
-            string title = titleScrape.Title.ToString();
-            //string title = webBrowser1.DocumentTitle;
+            //string inputURL = webBrowser1.Url.AbsoluteUri.ToString();
+            //TitleScraper titleScrape = new TitleScraper(inputURL);
+            //titleScrape.Scrape();
+            //string title = titleScrape.Title.ToString();
+            string title = webBrowser1.DocumentTitle;
             if (previousUrl != url)
             {
                 addHistory(url, title, date);
