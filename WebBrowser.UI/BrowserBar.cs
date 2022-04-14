@@ -16,12 +16,14 @@ namespace WebBrowser.UI
 {
     public partial class BrowserBar : UserControl
     {
-
         private string previousUrl;
 
         public BrowserBar()
         {
             InitializeComponent();
+
+            //Used when trying to implement hover over URL - not currently functioning
+            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
         }
 
         private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,7 +132,6 @@ namespace WebBrowser.UI
                 System.Text.RegularExpressions.Regex ex = new System.Text.RegularExpressions.Regex(regex, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
                 Title = ex.Match(html).Value.Trim();
             }
-
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -161,6 +162,36 @@ namespace WebBrowser.UI
             pageLoadProgressBar.Visible = true;
             statusLabel.Text = "Loading...";
             timer1.Start();
+        }
+
+        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        //Used when trying to implement hover over URL - not currently functioning
+        {
+            webBrowser1.Document.Body.MouseOver += new HtmlElementEventHandler(Mouse_Hover_URL);
+        }
+
+
+        private void Mouse_Hover_URL(object sender, HtmlElementEventArgs e)
+        //Used when trying to implement hover over URL - not currently functioning
+        {
+            if (e.ToElement != null && e.ToElement.TagName == "H1" && e.ToElement.GetAttribute("processed") != "true")
+            {
+                string[] words = e.ToElement.InnerHtml.Split(' ');
+                e.ToElement.InnerHtml = "";
+                for (int i = 0; i < words.Length; i++)
+                    e.ToElement.InnerHtml += "<span> " + words[i] + " </span>";
+
+                foreach (HtmlElement el in e.ToElement.GetElementsByTagName("span"))
+                    el.MouseOver += new HtmlElementEventHandler(Mouse_Over_Event);
+
+                e.ToElement.SetAttribute("processed", "true");
+            }
+        }
+
+        private void Mouse_Over_Event(object sender, HtmlElementEventArgs e)
+        //Used when trying to implement hover over URL - not currently functioning
+        {
+            //htmlLinkLabel.Text = e.ToElement.InnerText;            
         }
     }
 }

@@ -41,6 +41,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.pageLoadProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.htmlLinkLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -143,7 +144,8 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pageLoadProgressBar,
-            this.statusLabel});
+            this.statusLabel,
+            this.htmlLinkLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 427);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(794, 22);
@@ -160,6 +162,15 @@
             // 
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // htmlLinkLabel
+            // 
+            this.htmlLinkLabel.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
+            this.htmlLinkLabel.IsLink = true;
+            this.htmlLinkLabel.Name = "htmlLinkLabel";
+            this.htmlLinkLabel.Size = new System.Drawing.Size(82, 17);
+            this.htmlLinkLabel.Text = "htmlLinkLabel";
+            this.htmlLinkLabel.Visible = false;
             // 
             // timer1
             // 
@@ -198,5 +209,6 @@
         private System.Windows.Forms.ToolStripProgressBar pageLoadProgressBar;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel htmlLinkLabel;
     }
 }
