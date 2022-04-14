@@ -20,12 +20,43 @@ namespace WebBrowser.UI
 
         private void HistoryManagerForm_Load(object sender, EventArgs e)
         {
-            var items = HistoryManager.GetHistoryItems();
-            listBoxHistory.Items.Clear();
+            // TODO: This line of code loads data into the 'historyDataSet.History' table. You can move, or remove it, as needed.
+            load_data();
+        }
 
+        private void load_data()
+        {
+            var items = HistoryManager.GetHistoryItems();
+            listBoxHistory.DataSource = items;
+        }
+
+        private void historySearchButton_Click(object sender, EventArgs e)
+        {
+            string toFind = historySearchTextBox.Text;
+            var items = HistoryManager.GetHistorySearchItems(toFind);
+            listBoxHistory.DataSource = items;
+        }
+
+        private void deleteEntryButton_Click(object sender, EventArgs e)
+        {
+            HistoryItem item = (HistoryItem)listBoxHistory.SelectedItem;
+            HistoryManager.DeleteHistoryEntryItem(item.Id);
+            load_data();
+        }
+
+        private void listBoxHistory_Format(object sender, ListControlConvertEventArgs e)
+        {
+            var historyItem = (HistoryItem)e.ListItem;
+            e.Value = string.Format("[{0}] {1} ({2})", historyItem.Date, historyItem.Title, historyItem.URL);
+        }
+
+        private void clearHistoryButton_Click(object sender, EventArgs e)
+        {
+            var items = HistoryManager.GetHistoryItems();
+            listBoxHistory.DataSource = items;
             foreach(var item in items)
             {
-                listBoxHistory.Items.Add(string.Format("[{0}] {1} ({2})", item.Date, item.Title, item.URL));
+                
             }
         }
     }
