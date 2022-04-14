@@ -22,7 +22,7 @@ namespace WebBrowser.Logic
             }
             if(!duplicate)
             {
-                adapter.Insert(item.URL, item.Title);
+                adapter.Insert(item.URL, item.Title, item.Id);
             }            
         }
 
@@ -36,6 +36,7 @@ namespace WebBrowser.Logic
                 var item = new BookmarkItem();
                 item.URL = row.URL;
                 item.Title = row.Title;
+                item.Id = row.Id;
 
                 results.Add(item);
             }
@@ -62,7 +63,7 @@ namespace WebBrowser.Logic
         public static int DeleteBookmarkEntryItem(int Id)
         {
             var adapter = new BookmarksTableAdapter();
-            int rows = adapter.DeleteBookmarkSelection(Id);
+            int rows = adapter.DeleteSelection(Id);
             return rows;
         }
     }
