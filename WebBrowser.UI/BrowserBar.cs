@@ -17,6 +17,7 @@ namespace WebBrowser.UI
     public partial class BrowserBar : UserControl
     {
         private string previousUrl;
+        internal object Document;
 
         public BrowserBar()
         {
@@ -193,5 +194,6 @@ namespace WebBrowser.UI
         {
             //htmlLinkLabel.Text = e.ToElement.InnerText;            
         }
+             
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebBrowser.Logic;
+using System.Web;
 
 namespace WebBrowser.UI
 {
@@ -60,6 +61,28 @@ namespace WebBrowser.UI
         private void clearHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HistoryManager.DeleteAllHistoryItems();
+        }
+
+        private void savePageAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void switchTabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nextTabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int count = tabControl1.TabCount;
+            int current = tabControl1.SelectedIndex;
+            int next = current + 1;
+
+            if (next < count)
+                tabControl1.SelectedIndex = next;
+            else
+                tabControl1.SelectedIndex = 0;
         }
     }
 }
