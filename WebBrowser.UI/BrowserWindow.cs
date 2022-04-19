@@ -65,7 +65,8 @@ namespace WebBrowser.UI
 
         private void savePageAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            browserBar1.HtmlPage();
+            //var current = tabControl1.SelectedTab;
+            browserBar1.HtmlPage();      
         }
 
         private void nextTabToolStripMenuItem_Click(object sender, EventArgs e)

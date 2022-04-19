@@ -18,6 +18,7 @@ namespace WebBrowser.UI
     {
         private string previousUrl;
         private string homeURL = "www.google.com";
+        
 
         public void setHomeURL(string url)
         {
@@ -31,6 +32,19 @@ namespace WebBrowser.UI
 
         public void HtmlPage()
         {
+            //SaveFileDialog dialogue = new SaveFileDialog();
+            //dialogue.FileName = "Document";
+            //dialogue.DefaultExt = ".html";
+            //dialogue.Filter = "HTML Documents (.html) | *.html";
+
+            //var result = dialogue.ShowDialog();
+
+            //if (dialogue.FileOk())
+            //{
+            //    string filename = dialogue.FileName;
+            //}
+            
+            
             webBrowser1.ShowSaveAsDialog();
         }
         
