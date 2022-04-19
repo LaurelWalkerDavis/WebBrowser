@@ -100,9 +100,5 @@ namespace WebBrowser.UI
             browserBar1.htmlLabel.Text = browserBar1.addressBox.Text;
         }
 
-        private void savePageAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserBar));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.backButton = new System.Windows.Forms.ToolStripButton();
             this.forwardButton = new System.Windows.Forms.ToolStripButton();
             this.refreshButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.homeButton = new System.Windows.Forms.ToolStripButton();
             this.addressBox = new System.Windows.Forms.ToolStripTextBox();
             this.goButton = new System.Windows.Forms.ToolStripButton();
             this.bookmkButton = new System.Windows.Forms.ToolStripButton();
@@ -43,6 +44,7 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.htmlLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.mapHomeButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,10 +55,11 @@
             this.backButton,
             this.forwardButton,
             this.refreshButton,
-            this.toolStripButton1,
+            this.homeButton,
             this.addressBox,
             this.goButton,
-            this.bookmkButton});
+            this.bookmkButton,
+            this.mapHomeButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(794, 25);
@@ -93,15 +96,15 @@
             this.refreshButton.Text = "toolStripButton1";
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
-            // toolStripButton1
+            // homeButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::WebBrowser.UI.Properties.Resources.Home_16xMD;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "homeButton";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.homeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.homeButton.Image = global::WebBrowser.UI.Properties.Resources.Home_16xMD;
+            this.homeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.homeButton.Name = "homeButton";
+            this.homeButton.Size = new System.Drawing.Size(23, 22);
+            this.homeButton.Text = "homeButton";
+            this.homeButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // addressBox
             // 
@@ -179,6 +182,16 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // mapHomeButton
+            // 
+            this.mapHomeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mapHomeButton.Image = ((System.Drawing.Image)(resources.GetObject("mapHomeButton.Image")));
+            this.mapHomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mapHomeButton.Name = "mapHomeButton";
+            this.mapHomeButton.Size = new System.Drawing.Size(23, 22);
+            this.mapHomeButton.Text = "mapHomeButton";
+            this.mapHomeButton.Click += new System.EventHandler(this.mapHomeButton_Click);
+            // 
             // BrowserBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,7 +215,7 @@
         private System.Windows.Forms.ToolStripButton backButton;
         private System.Windows.Forms.ToolStripButton forwardButton;
         private System.Windows.Forms.ToolStripButton refreshButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton homeButton;
         private System.Windows.Forms.ToolStripButton goButton;
         private System.Windows.Forms.ToolStripButton bookmkButton;
         private System.Windows.Forms.WebBrowser webBrowser1;
@@ -212,5 +225,6 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         public System.Windows.Forms.ToolStripStatusLabel htmlLabel;
         public System.Windows.Forms.ToolStripTextBox addressBox;
+        private System.Windows.Forms.ToolStripButton mapHomeButton;
     }
 }

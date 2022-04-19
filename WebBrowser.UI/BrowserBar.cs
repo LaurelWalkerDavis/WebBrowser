@@ -17,16 +17,17 @@ namespace WebBrowser.UI
     public partial class BrowserBar : UserControl
     {
         private string previousUrl;
+        private string homeURL = "www.google.com";
+
+        public void setHomeURL(string url)
+        {
+            homeURL = url;
+        }
 
         public void printPage()
         {
             webBrowser1.ShowPrintDialog();
         }
-
-        //public Stream pdfPage()
-        //{
-        //    return webBrowser1.ShowPrintDialog;
-        //}
 
         public void HtmlPage()
         {
@@ -36,7 +37,7 @@ namespace WebBrowser.UI
         public BrowserBar()
         {
             InitializeComponent();
-            webBrowser1.Navigate("www.google.com");
+            webBrowser1.Navigate(homeURL);
             //Used when trying to implement hover over URL - not currently functioning
             //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
         }
@@ -179,45 +180,28 @@ namespace WebBrowser.UI
             timer1.Start();
         }
 
-        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        //Used when trying to implement hover over URL - not currently functioning
-        {
-            webBrowser1.Document.Body.MouseOver += new HtmlElementEventHandler(Mouse_Hover_URL);
-        }
-
-
-        private void Mouse_Hover_URL(object sender, HtmlElementEventArgs e)
-        //Used when trying to implement hover over URL - not currently functioning
-        {
-            if (e.ToElement != null && e.ToElement.TagName == "H1" && e.ToElement.GetAttribute("processed") != "true")
-            {
-                string[] words = e.ToElement.InnerHtml.Split(' ');
-                e.ToElement.InnerHtml = "";
-                for (int i = 0; i < words.Length; i++)
-                    e.ToElement.InnerHtml += "<span> " + words[i] + " </span>";
-
-                foreach (HtmlElement el in e.ToElement.GetElementsByTagName("span"))
-                    el.MouseOver += new HtmlElementEventHandler(Mouse_Over_Event);
-
-                e.ToElement.SetAttribute("processed", "true");
-            }
-        }
-
-        private void Mouse_Over_Event(object sender, HtmlElementEventArgs e)
-        //Used when trying to implement hover over URL - not currently functioning
-        {
-            //htmlLinkLabel.Text = e.ToElement.InnerText;            
-        }
-
-        //private void printHelper()
+        //private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        ////Used when trying to implement hover over URL - not currently functioning
         //{
-        //    webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
+        //    webBrowser1.Document.Body.MouseOver += new HtmlElementEventHandler(Mouse_Hover_URL);
         //}
 
-        //private void printDocument(object sender, WebBrowserDocumentCompletedEventHandler e)
+
+        //private void Mouse_Hover_URL(object sender, HtmlElementEventArgs e)
+        ////Used when trying to implement hover over URL - not currently functioning
         //{
-        //    ((WebBrowser)sender).Print();
-        //    ((WebBrowser)sender).Dispose();
+        //    if (e.ToElement != null && e.ToElement.TagName == "H1" && e.ToElement.GetAttribute("processed") != "true")
+        //    {
+        //        string[] words = e.ToElement.InnerHtml.Split(' ');
+        //        e.ToElement.InnerHtml = "";
+        //        for (int i = 0; i < words.Length; i++)
+        //            e.ToElement.InnerHtml += "<span> " + words[i] + " </span>";
+
+        //        foreach (HtmlElement el in e.ToElement.GetElementsByTagName("span"))
+        //            el.MouseOver += new HtmlElementEventHandler(Mouse_Over_Event);
+
+        //        e.ToElement.SetAttribute("processed", "true");
+        //    }
         //}
 
         public void print()
@@ -227,7 +211,13 @@ namespace WebBrowser.UI
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("www.google.com");
+            webBrowser1.Navigate(homeURL);
+        }
+
+        private void mapHomeButton_Click(object sender, EventArgs e)
+        {
+            string url = addressBox.Text;
+            setHomeURL(url);
         }
     }
 }
