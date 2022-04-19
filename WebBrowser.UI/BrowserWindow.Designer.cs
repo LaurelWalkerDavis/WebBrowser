@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCurrentTabMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePageAsHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.nextTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.browserBar1 = new WebBrowser.UI.BrowserBar();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -86,6 +86,15 @@
             this.newTabMenu.Text = "New Tab";
             this.newTabMenu.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
             // 
+            // nextTabToolStripMenuItem
+            // 
+            this.nextTabToolStripMenuItem.Name = "nextTabToolStripMenuItem";
+            this.nextTabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
+            this.nextTabToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.nextTabToolStripMenuItem.Text = "Next Tab";
+            this.nextTabToolStripMenuItem.Visible = false;
+            this.nextTabToolStripMenuItem.Click += new System.EventHandler(this.nextTabToolStripMenuItem_Click);
+            // 
             // closeCurrentTabMenuItem
             // 
             this.closeCurrentTabMenuItem.Name = "closeCurrentTabMenuItem";
@@ -108,6 +117,7 @@
             this.printPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.printPageToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.printPageToolStripMenuItem.Text = "Print Page";
+            this.printPageToolStripMenuItem.Click += new System.EventHandler(this.printPageToolStripMenuItem_Click);
             // 
             // exitWebBrowserToolStripMenuItem
             // 
@@ -192,21 +202,15 @@
             this.tabPage1.Text = "Tab1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // nextTabToolStripMenuItem
-            // 
-            this.nextTabToolStripMenuItem.Name = "nextTabToolStripMenuItem";
-            this.nextTabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Tab)));
-            this.nextTabToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.nextTabToolStripMenuItem.Text = "Next Tab";
-            this.nextTabToolStripMenuItem.Visible = false;
-            this.nextTabToolStripMenuItem.Click += new System.EventHandler(this.nextTabToolStripMenuItem_Click);
-            // 
             // browserBar1
             // 
             this.browserBar1.Location = new System.Drawing.Point(0, 0);
             this.browserBar1.Name = "browserBar1";
             this.browserBar1.Size = new System.Drawing.Size(794, 449);
             this.browserBar1.TabIndex = 0;
+            this.browserBar1.MouseEnter += new System.EventHandler(this.browserBar1_MouseEnter);
+            this.browserBar1.MouseLeave += new System.EventHandler(this.browserBar1_MouseLeave);
+            this.browserBar1.MouseHover += new System.EventHandler(this.browserBar1_MouseHover);
             // 
             // BrowserWindow
             // 

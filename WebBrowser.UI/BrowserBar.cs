@@ -17,14 +17,28 @@ namespace WebBrowser.UI
     public partial class BrowserBar : UserControl
     {
         private string previousUrl;
-        internal object Document;
 
+        public void printPage()
+        {
+            webBrowser1.ShowPrintDialog();
+        }
+
+        //public Stream pdfPage()
+        //{
+        //    return webBrowser1.ShowPrintDialog;
+        //}
+
+        public void HtmlPage()
+        {
+            webBrowser1.ShowSaveAsDialog();
+        }
+        
         public BrowserBar()
         {
             InitializeComponent();
-
+            webBrowser1.Navigate("www.google.com");
             //Used when trying to implement hover over URL - not currently functioning
-            webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
+            //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
         }
 
         private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,6 +208,26 @@ namespace WebBrowser.UI
         {
             //htmlLinkLabel.Text = e.ToElement.InnerText;            
         }
-             
+
+        //private void printHelper()
+        //{
+        //    webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
+        //}
+
+        //private void printDocument(object sender, WebBrowserDocumentCompletedEventHandler e)
+        //{
+        //    ((WebBrowser)sender).Print();
+        //    ((WebBrowser)sender).Dispose();
+        //}
+
+        public void print()
+        {
+            webBrowser1.Print();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Navigate("www.google.com");
+        }
     }
 }

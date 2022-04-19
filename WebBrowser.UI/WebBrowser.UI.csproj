@@ -286,8 +286,8 @@
     </Content>
     <Content Include="..\WebBrowser.Data\WebBrowserDB_log.ldf">
       <Link>WebBrowserDB_log.ldf</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WebBrowserDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

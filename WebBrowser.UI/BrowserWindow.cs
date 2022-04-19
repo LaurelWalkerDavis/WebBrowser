@@ -65,12 +65,7 @@ namespace WebBrowser.UI
 
         private void savePageAsHTMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void switchTabToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            browserBar1.HtmlPage();
         }
 
         private void nextTabToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,6 +78,31 @@ namespace WebBrowser.UI
                 tabControl1.SelectedIndex = next;
             else
                 tabControl1.SelectedIndex = 0;
+        }        
+
+        private void printPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            browserBar1.printPage();
+        }
+
+        private void browserBar1_MouseHover(object sender, EventArgs e)
+        {
+            browserBar1.htmlLabel.Text = browserBar1.addressBox.Text;
+        }
+
+        private void browserBar1_MouseLeave(object sender, EventArgs e)
+        {
+            browserBar1.htmlLabel.Text = "";
+        }
+
+        private void browserBar1_MouseEnter(object sender, EventArgs e)
+        {
+            browserBar1.htmlLabel.Text = browserBar1.addressBox.Text;
+        }
+
+        private void savePageAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
