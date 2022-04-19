@@ -38,8 +38,6 @@ namespace WebBrowser.UI
         {
             InitializeComponent();
             webBrowser1.Navigate(homeURL);
-            //Used when trying to implement hover over URL - not currently functioning
-            //webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(webBrowser1_DocumentCompleted);
         }
 
         private void exitWebBrowserToolStripMenuItem_Click(object sender, EventArgs e)
